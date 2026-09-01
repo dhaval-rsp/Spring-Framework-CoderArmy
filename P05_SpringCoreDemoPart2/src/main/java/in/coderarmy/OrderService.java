@@ -1,0 +1,31 @@
+package in.coderarmy;
+
+import in.coderarmy.payment.PaymentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+public class OrderService {
+
+    private PaymentService paymentService;
+
+    public OrderService() {
+    }
+
+    @Autowired
+    public OrderService(@Qualifier("card") PaymentService paymentService) {
+        this.paymentService = paymentService;
+        System.out.println("OrderService Constructor - Eager loading will print this");
+    }
+
+    public void setPaymentService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+        System.out.println("OrderService Setter - Eager loading will print this");
+    }
+
+    public void placeOrder(){
+        paymentService.pay();
+        System.out.println("Order placed");
+    }
+}
