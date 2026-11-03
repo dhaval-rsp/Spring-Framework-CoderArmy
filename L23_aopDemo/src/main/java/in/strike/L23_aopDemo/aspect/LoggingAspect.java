@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-public class LoggingAspect {
+public class  LoggingAspect {
 
     @Before("execution(* in.strike.L23_aopDemo.service.StudentService.createStudent(..))")
     public void logBeforeMethod(){
