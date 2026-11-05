@@ -36,12 +36,12 @@ public class Student {
     @Embedded
     private Address addresses;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "student_skills",
-            joinColumns = @JoinColumn(name = "student_id")
-    )
-    private Set<String> skills;
+//    @ElementCollection
+//    @CollectionTable(
+//            name = "student_skills",
+//            joinColumns = @JoinColumn(name = "student_id")
+//    )
+//    private Set<String> skills;
 
 
 //    @Column(precision = 5, scale = 2)
