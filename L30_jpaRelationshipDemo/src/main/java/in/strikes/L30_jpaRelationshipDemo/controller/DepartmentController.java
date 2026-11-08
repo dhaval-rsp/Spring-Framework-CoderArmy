@@ -28,6 +28,6 @@ public class DepartmentController {
             @RequestParam String studentName) {
 
         departmentService.createDepartment(department, studentName);
-        return ResponseEntity.ok("DONE");
+        return ResponseEntity.ok("DONE department created" + department.getName());
     }
 }
