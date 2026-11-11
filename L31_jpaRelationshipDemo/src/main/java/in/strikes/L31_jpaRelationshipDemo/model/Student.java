@@ -3,6 +3,8 @@ package in.strikes.L31_jpaRelationshipDemo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,7 +19,12 @@ public class Student {
 
     private String name;
 
-    @ManyToMany
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_id")
     private Department department;
+
+    @OneToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
+
 }
