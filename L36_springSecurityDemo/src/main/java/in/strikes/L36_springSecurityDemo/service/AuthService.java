@@ -2,7 +2,9 @@ package in.strikes.L36_springSecurityDemo.service;
 
 import in.strikes.L36_springSecurityDemo.dto.UserRegisterRequestDto;
 import in.strikes.L36_springSecurityDemo.dto.UserRegisterResponseDto;
+import in.strikes.L36_springSecurityDemo.entity.Role;
 import in.strikes.L36_springSecurityDemo.entity.User;
+import in.strikes.L36_springSecurityDemo.repository.RoleRepository;
 import in.strikes.L36_springSecurityDemo.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,10 +14,15 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
-    public AuthService(UserRepository userRepository) {
+    public AuthService(UserRepository userRepository,
+                       RoleRepository roleRepository,
+                       PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public UserRegisterResponseDto register(
@@ -29,6 +36,10 @@ public class AuthService {
 
         user.setPassword((encodedPassword));
         user.setEnabled(true);
+
+        Role role = roleRepository.findByName("ROLE_USER").get();
+
+        user.getRoles().add(role);
 
         userRepository.save(user);
 

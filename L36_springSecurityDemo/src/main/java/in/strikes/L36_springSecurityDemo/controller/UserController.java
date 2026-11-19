@@ -35,7 +35,7 @@ public class UserController {
         return ResponseEntity.ok(userRegisterResponseDto);
     }
 
-    @GetMapping("/toke")
+    @GetMapping("/token")
     public CsrfToken getToken (CsrfToken csrfToken) {
         return csrfToken;
     }
