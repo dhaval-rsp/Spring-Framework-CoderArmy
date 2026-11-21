@@ -25,6 +25,7 @@ public class UserController {
         return "Hello";
     }
 
+    // new registration
     @PostMapping("/register")
     public ResponseEntity<UserRegisterResponseDto> register(
             @RequestBody UserRegisterRequestDto registerRequestDto) {
@@ -35,8 +36,9 @@ public class UserController {
         return ResponseEntity.ok(userRegisterResponseDto);
     }
 
-    @GetMapping("/token")
-    public CsrfToken getToken (CsrfToken csrfToken) {
-        return csrfToken;
-    }
+    // csrf token
+//    @GetMapping("/token")
+//    public CsrfToken getToken (CsrfToken csrfToken) {
+//        return csrfToken;
+//    }
 }

@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                         "USER NOT FOUND"
                 ));
 
-
+        // returning UserDetail raper which is our CustomUserDetails
         return new CustomUserDetails(user);
     }
 }

@@ -31,18 +31,23 @@ public class AuthService {
         User user = new User();
         user.setUsername(registerRequestDto.getUsername());
 
+        // create encoded password from request dto
         String encodedPassword =
                 passwordEncoder.encode(registerRequestDto.getPassword());
 
+        // setting encoded password + enabling user
         user.setPassword((encodedPassword));
         user.setEnabled(true);
 
+        // default role is user | creating its object
         Role role = roleRepository.findByName("ROLE_USER").get();
 
+        // adding role object into entity.user.roles [which is hashset in our user class]
         user.getRoles().add(role);
 
         userRepository.save(user);
 
+        // creating response dto so that we can print message for user that use has been added
         UserRegisterResponseDto responseDto =
                 new UserRegisterResponseDto();
 
@@ -51,4 +56,6 @@ public class AuthService {
 
         return responseDto;
     }
+
+    // USER LOGIn
 }
